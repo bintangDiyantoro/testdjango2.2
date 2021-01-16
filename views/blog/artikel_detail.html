@@ -1,0 +1,5 @@
+{% extends '../base.html' %} {%block content%} {{object.isi}}
+<br>
+<small> <i> ditulis oleh: {{object.penulis}}, pada {{object.published}}</i></small>
+<br><br>
+<a href="{% url 'blog:index' %}"><button>Kembali</button></a> <a href="{% url 'blog:edit' object.slug %}"><button>Edit</button></a> <a href="{% url 'blog:delete' object.slug%}"><button>Hapus</button></a> {%endblock content%}

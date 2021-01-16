@@ -1,0 +1,5 @@
+<form method="post" style="display: inline;">
+    {% csrf_token %} Are you sure want to delete <strong>{{object}}</strong>? <br><br>
+    <button type="submit">Yes</button>
+</form>
+<a href="{% url 'blog:detail' object.slug%}"><button>No</button></a>
