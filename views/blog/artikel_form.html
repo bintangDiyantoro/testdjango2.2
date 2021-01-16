@@ -1,0 +1,18 @@
+{% extends '../base.html' %} {% block content %}
+<h3>
+    {{message}}
+</h3>
+
+<form method="post" style="display: inline;">
+
+    {%csrf_token%} {{ form.penulis.label }} {{ form.penulis }}
+    <small style="color: red;">
+        <i style="list-style: none;">
+            {{form.errors.penulis}}
+        </i>
+    </small>
+
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<a href="{% url 'blog:index' %}"><button>Back</button></a>{% endblock content %}
