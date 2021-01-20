@@ -3,6 +3,7 @@
 <ul style="list-style: none;">
     {%for i in object_list%}
     <li>
+<<<<<<< HEAD
         <a href="{% url 'blog:detail' i.slug%}">
             {{forloop.counter0|add:page_obj.start_index}}. {{i}}
         </a>
@@ -10,6 +11,18 @@
     {% endfor %}
 </ul>
 
+=======
+        {% if page_obj.is_paginated %}
+        <a href="{% url 'blog:detail' i.slug%}">
+            {{forloop.counter0|add:page_obj.start_index}}. {{i}}
+        </a> {% else %}
+        <a href="{% url 'blog:detail' i.slug%}">
+            {{forloop.counter}}. {{i}}
+        </a> {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+>>>>>>> Bean
 {% if page_obj.has_other_pages %} {% if page_obj.has_previous %}
 <a href="{% url 'blog:index' %}?page={{page_obj.previous_page_number}}">&laquo;</a> {% else %} &laquo; {% endif %} {% for i in paginator.page_range %} {% if i != page_obj.number %}
 <a href="{% url 'blog:index' %}?page={{i}}">{{i}}</a> {% else %} {{i}} {% endif %} {% endfor %} {% if page_obj.has_next %}
@@ -17,4 +30,14 @@
 <br><br>
 <a href="{% url 'blog:create' %}">
     <button>Tambah Data</button>
+<<<<<<< HEAD
 </a> {%endblock content%}
+=======
+</a>
+<p>
+    <form method="get">
+        <input type="text" name="keyword" placeholder="cari data">
+    </form>
+</p>
+{%endblock content%}
+>>>>>>> Bean

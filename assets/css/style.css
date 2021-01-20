@@ -1,5 +1,13 @@
 html body small i ul {
   list-style: none;
 }
+<<<<<<< HEAD
+=======
+html body .errorlist {
+  list-style: none;
+  font-size: smaller;
+  color: red;
+}
+>>>>>>> Bean
 
 /*# sourceMappingURL=style.css.map */
