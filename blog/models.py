@@ -4,12 +4,14 @@ from .validators import validatePenulis
 from django.urls import reverse
 # Create your models here.
 
+lorem = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et repudiandae reiciendis quos rem, consequatur debitis eveniet ullam perspiciatis cum eum?"
+
 
 class Artikel(models.Model):
     judul = models.CharField(max_length=20, unique=True)
-    isi = models.TextField(
-        max_length=300, default="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et repudiandae reiciendis quos rem, consequatur debitis eveniet ullam perspiciatis cum eum?")
+    isi = models.TextField(max_length=300, default=lorem)
     penulis = models.CharField(max_length=30, validators=[validatePenulis])
+    photo = models.FileField()
     slug = models.SlugField(blank=True, editable=False)
     published = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

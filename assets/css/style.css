@@ -1,5 +1,10 @@
 html body small i ul {
   list-style: none;
 }
+html body .errorlist {
+  list-style: none;
+  font-size: smaller;
+  color: red;
+}
 
 /*# sourceMappingURL=style.css.map */

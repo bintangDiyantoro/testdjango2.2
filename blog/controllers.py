@@ -3,7 +3,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse
 from .models import Artikel
 from .forms import ArtikelForm
-# Create your views here.
 
 
 class Index(ListView):
@@ -14,13 +13,19 @@ class Index(ListView):
     }
     paginate_by = 5
 
+    def get_queryset(self, *args, **kwargs):
+        objek = self.model.objects.all()
+        if self.request.GET:
+            if self.request.GET['keyword']:
+                objek = self.model.objects.filter(
+                    judul__contains=self.request.GET['keyword'])
+        return objek
+
 
 class Detail(DetailView):
     model = Artikel
 
     def get_object(self, *args, **kwargs):
-        print(self.model.objects.get(slug=self.kwargs['slug']).id)
-
         self.extra_context = {
             'title': self.model.objects.get(slug=self.kwargs['slug']), 'message': 'Selamat menikmati data secara detail', }
         return super().get_object()
@@ -40,9 +45,7 @@ class Create(CreateView):
 
 class Update(UpdateView):
     model = Artikel
-    fields = [
-        'judul', 'isi', 'penulis',
-    ]
+    fields = ('judul', 'isi', 'penulis', 'photo')
 
     def get_context_data(self):
         self.extra_context = {

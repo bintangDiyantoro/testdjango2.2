@@ -3,14 +3,12 @@
     {{message}}
 </h3>
 
-<form method="post" style="display: inline;">
+<form method="post" style="display: inline;" enctype="multipart/form-data">
 
-    {%csrf_token%} {{ form.penulis.label }} {{ form.penulis }}
-    <small style="color: red;">
-        <i style="list-style: none;">
-            {{form.errors.penulis}}
-        </i>
-    </small>
+    {%csrf_token%}
+    <table>
+        {{form.as_table}}
+    </table>
 
     <br>
     <button type="submit">Submit</button>
