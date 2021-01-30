@@ -14,12 +14,13 @@ class Index(ListView):
     paginate_by = 5
 
     def get_queryset(self, *args, **kwargs):
-        objek = self.model.objects.all()
-        if self.request.GET:
-            if self.request.GET['keyword']:
-                objek = self.model.objects.filter(
-                    judul__contains=self.request.GET['keyword'])
-        return objek
+        if self.request.GET.get('keyword'):
+            self.queryset = self.model.objects.filter(
+                judul__contains=self.request.GET['keyword'])
+            print(self.request.GET['keyword'])
+            for i in self.queryset:
+                print(i)
+        return super().get_queryset()
 
 
 class Detail(DetailView):
